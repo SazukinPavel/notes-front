@@ -1,0 +1,15 @@
+.NavBar{
+    background-color: rgb(114, 107, 107);
+    display: grid;
+    grid-template-columns: 3fr 1.5fr;
+    padding: 1rem;
+    a{
+        text-decoration: none;
+        color: rgb(195, 188, 180);
+        font-size: 2rem;
+        transition: all 0.5s;
+        &.active{
+            color: rgb(160, 152, 155);
+        }
+    }
+}

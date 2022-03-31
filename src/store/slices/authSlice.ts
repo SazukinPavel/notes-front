@@ -1,10 +1,11 @@
-import { AuthService } from './../../services/AuthService';
-import { LoginUserDTO } from './../../types/dto/LoginUser.dto';
+import { registerThunk } from './thunks/registerThunk';
 import { AuthSliceState } from './../../types/auth';
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from '../../types/user';
+import { WritableDraft } from 'immer/dist/internal';
+import { loginThunk } from './thunks/loginThunk';
 
-const initialState:AuthSliceState={isAuth:false,user:null}
+const initialState:AuthSliceState={isAuth:false,user:null,errorMessage:undefined}
 
 export const authSlice=createSlice({
     name:'auth',
@@ -17,29 +18,36 @@ export const authSlice=createSlice({
         logout(state){
             state.isAuth=false
             state.user=null
+            state.errorMessage=undefined
+        },
+        resetAuthErrorMessage(state){
+            state.errorMessage=undefined
         }
     },
     extraReducers:builder=>{
-        builder.addCase(loginThunk.pending,(state)=>{
-            state.isAuth=false
-            state.user=null
+        builder.addCase(loginThunk.pending,authPending)
+        builder.addCase(loginThunk.fulfilled,authFulfilled)
+        builder.addCase(loginThunk.rejected,(state,action)=>{
+            state.errorMessage=action.payload as string
         })
-        builder.addCase(loginThunk.fulfilled,(state,action:PayloadAction<User>)=>{
-            state.isAuth=true
-            state.user=action.payload
+
+        builder.addCase(registerThunk.pending,authPending)
+        builder.addCase(registerThunk.fulfilled,authFulfilled)
+        builder.addCase(registerThunk.rejected,(state,action)=>{
+            state.errorMessage=action.payload as string
         })
+
     }
 })
 
-export const {login,logout}=authSlice.actions
+export const {login,logout,resetAuthErrorMessage}=authSlice.actions
 
-export const loginThunk=createAsyncThunk<User,LoginUserDTO>('loginThunk',
-async(dto,{rejectWithValue})=>{
-    try{
-        const res=await AuthService.login(dto)
-        localStorage.setItem('token',res.data.token)
-        return res.data.user
-    }catch(e){
-        return rejectWithValue(e)
-    }
-})
+const authPending=(state:WritableDraft<AuthSliceState>)=>{
+    state.isAuth=false
+    state.user=null
+}
+
+const authFulfilled=(state:WritableDraft<AuthSliceState>,action:PayloadAction<User>)=>{
+    state.isAuth=true
+    state.user=action.payload
+}

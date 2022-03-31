@@ -1,0 +1,35 @@
+.Button{
+    margin: 0.3rem;
+    padding: 0.3rem;
+    font-size: 1.5rem;
+    transition: all 1s;
+    color: white;
+
+    &.warn{
+        background-color: rgb(221, 0, 0);
+        box-shadow: 1px 2px 3px rgb(184, 22, 22);
+        &:hover,:focus{
+            background-color: rgb(143, 17, 17);
+            box-shadow: 2px 4px 6px rgb(156, 27, 27);
+        }
+    }
+
+    &.sucess{
+        background-color: rgb(44, 155, 1);
+        box-shadow: 1px 2px 3px rgb(1, 151, 9);
+        &:hover,:focus{
+            background-color: rgb(38, 114, 8);
+            box-shadow: 2px 4px 6px rgb(2, 90, 7);
+        }
+    }
+
+    &.primary{
+        background-color: rgb(158, 6, 158);
+        box-shadow: 1px 2px 3px rgb(128, 6, 107);
+        &:hover,:focus{
+            background-color: rgb(109, 10, 109);
+            box-shadow: 2px 4px 6px rgb(99, 1, 84);
+        }
+    }
+    
+}

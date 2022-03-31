@@ -1,0 +1,29 @@
+.ModalMessage{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(#000000, 0.5);
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    .ModalWindow{
+        background-color: white;
+        color: #000000;
+        padding: 2rem;
+        font-size: 1.5rem;
+        margin: auto;
+        border-radius: 0.5rem;
+        span.Close{
+            position: relative;
+            top: -1.7rem;
+            right: -90%;
+            margin: 0.3rem;
+            padding:0.2rem 0.5rem ;
+            font-size: 1.5rem;
+            border: black 0.1rem solid;
+            border-radius: 100%;
+            cursor: pointer;
+        }
+    }
+}

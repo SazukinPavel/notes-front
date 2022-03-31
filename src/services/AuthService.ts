@@ -1,3 +1,5 @@
+import { AuthDto } from './../types/auth';
+import { RegisterUserDTO } from './../types/dto/RegisterUser.dto';
 import { User } from './../types/user';
 import { $axios } from '../http';
 import { LoginUserDTO } from './../types/dto/LoginUser.dto';
@@ -6,8 +8,11 @@ import { LoginUserDTO } from './../types/dto/LoginUser.dto';
 
 export class AuthService{
 
-
     static login(dto:LoginUserDTO){
-        return $axios.post<{token:string,user:User}>('/users/login',dto)
+        return $axios.post<AuthDto>('/users/login',dto)
+    }
+
+    static register(dto:RegisterUserDTO){
+        return $axios.post<AuthDto>('/users/register',dto)
     }
 }
