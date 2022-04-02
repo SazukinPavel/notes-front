@@ -5,3 +5,4 @@ export interface User{
     img?:string
     role:'USER' | 'ADMIN'
 }
+

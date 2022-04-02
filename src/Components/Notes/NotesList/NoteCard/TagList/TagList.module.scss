@@ -1,0 +1,13 @@
+.TagList{
+    display: flex;
+    justify-content: left;
+
+    span{
+        font-size: 1.3rem;
+        padding: 0.3rem;
+        border: 3px solid gray;
+        border-radius: 40%;
+        cursor:pointer;
+        margin: 0 0.5rem;
+    }
+}
