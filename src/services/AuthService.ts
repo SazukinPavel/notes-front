@@ -1,6 +1,5 @@
 import { AuthDto } from './../types/auth';
 import { RegisterUserDTO } from './../types/dto/RegisterUser.dto';
-import { User } from './../types/user';
 import { $axios } from '../http';
 import { LoginUserDTO } from './../types/dto/LoginUser.dto';
 

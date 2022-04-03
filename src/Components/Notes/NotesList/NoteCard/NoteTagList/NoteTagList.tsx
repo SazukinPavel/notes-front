@@ -1,5 +1,5 @@
 import { Tag } from "../../../../../types/tag";
-import styles from './TagList.module.scss'
+import styles from './NoteTagList.module.scss'
 
 interface TagListProps{
     tags:Tag[]

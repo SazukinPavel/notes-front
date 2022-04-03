@@ -1,5 +1,5 @@
 import { Note } from "../../../../types/note";
-import TagList from "./TagList";
+import TagList from "./NoteTagList";
 import styles from './NoteCard.module.scss'
 import NoteAuthor from "./NoteAuthor";
 
